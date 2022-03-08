@@ -58,68 +58,19 @@ app.post("/", function(req, res) {
       //  .catch(error => console.log("Something went wrong post request towards TMDBW: " + error)); // JSON data parsed by `data.json()` call
     });
 
-let listOfMovies2;
+
   function processSearchResult(searchResult = {}) {
+    let listOfMovies = {};
     if (searchResult.data != null) {
-      let listOfMovies = searchResult.data.searchMovies;
-      listOfMovies2 = listOfMovies;
-      console.log("Seach");
-      console.log(listOfMovies);
+      listOfMovies = searchResult.data.searchMovies;
+      console.log("Search via TMDBW was successful!");
+      //console.log(listOfMovies);
     } else {
       console.log("Empty search results!");
     }
-    return;
+    res.send(listOfMovies);
   }
-
-
-  function sleep(ms) {
-      return new Promise(resolve => setTimeout(resolve, ms));
-  }
-
-  async function demo() {
-      for (let i = 0; i < 3; i++) {
-          console.log(`Waiting ${i} seconds...`);
-          await sleep(i * 1000);
-      }
-      console.log('Done');
-      res.send(listOfMovies2);
-  }
-
-  demo();
-
-
-
-  // res.write(x);
-  // res.json(x); //http://expressjs.com/en/5x/api.html#res.send
-
 })
-
-// Get request from Server towars TMDB API
-// https.get(url, function(response) {
-//   console.log("TMDB Get Status Code: " + response.statusCode);
-//
-//   if (response.statusCode === 200) {
-//     response.on("data", function(data) {
-//       const hurra = JSON.parse(data);
-//       console.log(hurra);
-//
-//       // const movieID = JSON.parse(data).results[0].id;
-//       // const movieTitle = rawMovieData.results[0].title;
-//       // //const movieGenres = rawMovieData.genres[0].name;
-//       // const movieVote = rawMovieData.results[0].vote_average;
-//       // res.write("<p> ID: " + movieID + "</p>");
-//       // res.write("<p> Title: " + movieTitle + "</p>");
-//       // //res.write("<p> Genres: " + movieGenres + "</p>");
-//       //  res.write(hurra);
-//       res.send();
-//     })
-//   } else {
-//     res.write("Not found!");
-//     res.send();
-//   }
-
-
-
 
 
 app.listen(3000, function() {
