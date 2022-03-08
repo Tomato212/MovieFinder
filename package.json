@@ -1,0 +1,29 @@
+{
+  "name": "web",
+  "version": "1.0.0",
+  "description": "Movie Finder server.",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Tomato212/MovieFinder.git"
+  },
+  "author": "Tamas Pere",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Tomato212/MovieFinder/issues"
+  },
+  "homepage": "https://github.com/Tomato212/MovieFinder#readme",
+  "dependencies": {
+    "body-parser": "^1.19.2",
+    "express": "^4.17.3",
+    "graphql": "^16.3.0",
+    "graphql-request": "^4.0.0",
+    "node-fetch": "^3.2.2",
+    "nodemon": "^2.0.15",
+    "react-query": "^3.34.16"
+  }
+}
