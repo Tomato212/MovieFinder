@@ -14,14 +14,11 @@
     "url": "https://github.com/Tomato212/MovieFinder/issues"
   },
   "homepage": "https://github.com/Tomato212/MovieFinder#readme",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
   "dependencies": {
     "@mui/material": "5.4.4",
     "react": "17.0.2",
     "react-dom": "17.0.2",
-    "react-scripts": "4.0.0"
+    "react-scripts": "4.0.0",
     "body-parser": "^1.19.2",
     "express": "^4.17.3",
     "node-fetch": "^3.2.2",
