@@ -5,7 +5,7 @@ import {
   processSearchResult
 } from "./graphQL.js";
 import {
-  dirname
+  dirname, join
 } from 'path';
 import {
   fileURLToPath
@@ -18,16 +18,17 @@ const app = express();
 app.use(bodyParser.urlencoded({
   extended: true
 }))
+app.use(express.static(join(__dirname, 'my-app/build')));
 
 // Get request from Client towards Server
-app.get("/", function(req, res) {
-  res.sendFile(__dirname + "/index.html");
-})
+app.get('/', function (req, res) {
+  res.sendFile(join(__dirname, 'my-app/build', 'index.html'));
+});
 
 // Post request from Client towards Server
 app.post("/", function(req, res) {
   // separate into other function
-  const titleQuery = req.body.movieTitle;
+  const titleQuery = req.body.queryText;
   const endpoint = "https://tmdb.sandbox.zoosh.ie/dev/graphql";
   const query = `query{
   searchMovies(query: "` + titleQuery + `") {

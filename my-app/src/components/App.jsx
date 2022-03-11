@@ -22,6 +22,7 @@ function App() {
         <input
           type="text"
           placeholder="Type the title of the movie."
+          name="queryText"
         />
         <button type="submit">Search</button>
       </form>
