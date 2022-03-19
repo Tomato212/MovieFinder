@@ -1,6 +1,7 @@
 body {
   margin: 0;
-  background-color: rgb(151, 151, 255);
+  background-color: black;
+  font-family: "Limelight", cursive;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }

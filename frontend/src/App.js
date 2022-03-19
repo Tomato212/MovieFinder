@@ -8,21 +8,21 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 function App() {
   return (
     <Router>
-      <div className="App">
+      <div className="container">
         <h1>Movie Finder</h1>
         <Nav />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/movies" element={<Movie />} />
         </Routes>
-        <form action="/" method="post">
+        {/* <form action="/" method="post">
           <input
             type="text"
             placeholder="Type the title of the movie."
             name="queryText"
           />
           <button type="submit">Search</button>
-        </form>
+        </form> */}
 
         {/* <CustomizedTables /> */}
       </div>
