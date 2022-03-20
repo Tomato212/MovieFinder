@@ -15,10 +15,9 @@ async function graphQLReqest(url = "", data = {}) {
 
 function processSearchResult(searchResult = {}) {
   let listOfMovies = {};
-  if (searchResult.data != null) {
+  if (searchResult.data !== null) {
     listOfMovies = searchResult.data.searchMovies;
     console.log("Search via TMDBW was successful!");
-    //console.log(listOfMovies);
   } else {
     console.log("Empty search results!");
   }
