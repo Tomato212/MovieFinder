@@ -53,6 +53,14 @@ export default function Table(props) {
         columns={columns}
         pageSize={20}
         rowsPerPageOptions={[20]}
+        sx={{
+          border: 3,
+          borderColor: "#3D0000",
+          borderRadius: 0,
+          "& .MuiDataGrid-cell:hover": {
+            backgroundColor: "3D0000",
+          },
+        }}
       />
     </div>
   );

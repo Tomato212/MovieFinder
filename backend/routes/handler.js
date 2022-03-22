@@ -2,12 +2,12 @@ import { Router } from "express";
 const router = Router();
 import { graphQLReqest, processSearchResult } from "../graphQL.js";
 
-router.get("/movies", (req, res) => {
+router.post("/movies", (req, res) => {
   // separate into other function
-  //   const titleQuery = req.body.queryText;
+  const titleQuery = req.body.formData;
   const endpoint = "https://tmdb.sandbox.zoosh.ie/dev/graphql";
   const query = `query{
-    searchMovies(query: "best") {
+    searchMovies(query: "${titleQuery}") {
       id
       name
       genres {
