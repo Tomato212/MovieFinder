@@ -73,50 +73,65 @@ function App() {
       <h1>Movie Finder</h1>
       <form onSubmit={handleSubmit} id="search-form">
         <Box
+          display="grid"
+          gridTemplateColumns="repeat(3, 1fr)"
           noValidate
           sx={{
-            display: "grid",
-            gridTemplateColumns: { sm: "2fr 1fr" },
             gap: 2,
             width: 700,
-            margin: "auto",
+            mx: "auto",
+            pb: 6,
           }}
         >
-          <SearchTextField
-            id="movie-search-field"
-            name="searchFormInput"
-            label="Title of the movie"
-            value={searchFormInput}
-            onChange={handleInputChange}
-            autoComplete="off"
-            sx={{ input: { color: "red" } }}
-          />
-          <Button
-            variant="contained"
-            type="submit"
-            className="searchButton"
-            sx={{
-              width: 200,
-              backgroundColor: "#3D0000",
-              boxSizing: "content-box",
-              fontFamily: "Limelight",
-              color: "#FF0000",
-              fontSize: 20,
-              fontWeight: 400,
+          <Box gridColumn="span 2">
+            <SearchTextField
+              id="movie-search-field"
+              name="searchFormInput"
+              label="Title of the movie"
+              value={searchFormInput}
+              onChange={handleInputChange}
+              autoComplete="off"
+              fullWidth
+              sx={{
+                input: { color: "red", height: "100%" },
+              }}
+            />
+          </Box>
 
-              "&:hover": {
-                backgroundColor: "#950101",
-                color: "#000000",
-              },
-            }}
-          >
-            Search
-          </Button>
+          <Box gridColumn="span 1">
+            <Button
+              variant="contained"
+              type="submit"
+              className="searchButton"
+              disabled={loading}
+              sx={{
+                backgroundColor: "#3D0000",
+                boxSizing: "content-box",
+                fontFamily: "Limelight",
+                color: "#FF0000",
+                fontSize: 20,
+                fontWeight: 400,
+                padding: 0,
+                textTransform: "none",
+                width: "100%",
+                height: "100%",
+
+                "&:hover": {
+                  backgroundColor: "#950101",
+                  color: "#000000",
+                },
+              }}
+            >
+              Search
+            </Button>
+          </Box>
+          <Box gridColumn="span 3" sx={{ height: 5 }}>
+            {loading ? <LinearProgress color="inherit" /> : <React.Fragment />}
+          </Box>
         </Box>
       </form>
-
       {loading ? (
-        <LinearProgress color="inherit" />
+        <React.Fragment />
       ) : movies.length === 0 ? (
         <React.Fragment />
       ) : (
