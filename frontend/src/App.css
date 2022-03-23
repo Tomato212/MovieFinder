@@ -1,0 +1,26 @@
+* {
+  box-sizing: content-box;
+}
+
+/* Elegant solution for avoiding jumping page due to scroll-bar */
+html {
+  margin-left: calc(100vw - 100%);
+}
+
+body {
+  color: #950101;
+  height: 100%;
+  text-align: center;
+  padding: 0 16px;
+}
+
+.container {
+  margin: auto;
+  padding: 0 0;
+  text-align: center;
+}
+
+.container h1 {
+  font-size: 70px;
+  font-weight: normal;
+}
