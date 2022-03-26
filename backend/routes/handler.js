@@ -1,9 +1,17 @@
 import { Router } from "express";
 const router = Router();
-import { graphQLReqest, processSearchResult } from "../graphQL.js";
+import {
+  graphQLReqest,
+  processSearchResult,
+  getDetailsFromWikipedia,
+  processWikiSearchResult,
+} from "../graphQL.js";
+import fetch from "node-fetch";
 
-router.post("/movies", (req, res) => {
+router.post("/SearchMovies", (req, res) => {
   // separate into other function
+  // Search for similar movies: similar{name}
+
   const titleQuery = req.body.formData;
   const endpoint = "https://tmdb.sandbox.zoosh.ie/dev/graphql";
   const query = `query{
@@ -25,7 +33,22 @@ router.post("/movies", (req, res) => {
       res.send(processSearchResult(data));
     })
     .catch((error) =>
-      console.log("Something went wrong post request towards TMDBW: " + error)
+      console.log(
+        "Something went wrong while post request towards TMDBW: " + error
+      )
+    );
+});
+
+router.post("/WikiSearch", (req, res) => {
+  const titleQuery = req.body.formData;
+  getDetailsFromWikipedia(titleQuery)
+    .then((data) => {
+      res.send(processWikiSearchResult(data));
+    })
+    .catch((error) =>
+      console.log(
+        "Something went wrong while get request towards Wikipedia: " + error
+      )
     );
 });
 
