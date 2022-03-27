@@ -1,0 +1,39 @@
+/* Search button */
+.searchButton.MuiButton-root {
+  background-color: #3d0000 !important;
+  box-sizing: content-box !important;
+  color: #ff0000 !important;
+  font-size: 24px !important;
+  padding: 0 !important;
+  text-transform: none !important;
+  width: 100%;
+  height: 100%;
+}
+
+.searchButton.MuiButton-root:hover {
+  background-color: #950101 !important;
+  color: #000000 !important;
+}
+
+.searchButton.MuiButton-root:disabled {
+  background-color: #ff0000 !important;
+  color: #000000 !important;
+}
+
+/* SearchTextField */
+.MuiInputBase-input {
+  color: #ff0000 !important;
+  height: 100% !important;
+}
+
+/* Boxes */
+.mainFormBox {
+  gap: 12px;
+  width: 700px;
+  margin: auto;
+  padding-bottom: 30px;
+}
+
+.loadingBarFormBox {
+  height: 5px;
+}

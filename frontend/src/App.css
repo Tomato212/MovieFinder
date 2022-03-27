@@ -9,9 +9,14 @@ html {
 
 body {
   color: #950101;
+  background-color: black;
   height: 100%;
   text-align: center;
   padding: 0 16px;
+  margin: 0;
+  font-family: "Limelight", cursive;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 .container {
@@ -25,15 +30,7 @@ body {
   font-weight: normal;
 }
 
-.MuiTableRow-hover {
-  color: "#FFFFFF";
-}
-
-.MuiTableRow-root {
-  color: "#FFFFFF";
-  font-size: 70px;
-}
-
-.MuiDataGrid-cell {
-  color: "#FFFFFF";
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
 }

@@ -35,7 +35,7 @@ router.post("/SearchMovies", (req, res) => {
 });
 
 router.post("/WikiSearch", (req, res) => {
-  var params = {
+  const params = {
     url: "https://en.wikipedia.org/w/api.php",
     action: "opensearch",
     search: req.body.queryWord,
