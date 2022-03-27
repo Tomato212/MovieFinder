@@ -1,12 +1,13 @@
-import "./App.css";
 import React, { useState } from "react";
 import Table from "./components/Table";
 
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
-import { styled, ThemeProvider, createTheme } from "@mui/material/styles";
+import { styled } from "@mui/material/styles";
 import LinearProgress from "@mui/material/LinearProgress";
+
+import "./App.css";
 
 const SearchTextField = styled(TextField)({
   "& label": {
@@ -44,7 +45,7 @@ function App() {
   };
 
   async function formSubmit(formData) {
-    const data2 = await fetch("/SearchMovies", {
+    await fetch("/SearchMovies", {
       //extract url
       method: "POST",
       headers: {
@@ -92,18 +93,6 @@ function App() {
       console.log({ numberOfRows });
     },
   };
-
-  const tableTheme = createTheme({
-    overrides: {
-      MuiTableRow: {
-        hover: {
-          "&:hover": {
-            backgroundColor: "rgba(33, 150, 243, 0.25) !important",
-          },
-        },
-      },
-    },
-  });
 
   return (
     <div className="container">
@@ -176,23 +165,7 @@ function App() {
       ) : movies.length === 0 ? (
         <React.Fragment />
       ) : (
-        <ThemeProvider theme={tableTheme}>
-          <Table
-            items={movies}
-            options={options}
-            rowClick={(event, rowData) => {
-              console.log("hahoooo");
-            }}
-            sx={{
-              width: 300,
-              color: "#3D0000",
-              "& .MuiSlider-thumb": {
-                borderRadius: "1px",
-                color: "#3D0000",
-              },
-            }}
-          />
-        </ThemeProvider>
+        <Table items={movies} options={options} />
       )}
     </div>
   );

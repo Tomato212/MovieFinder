@@ -1,48 +1,30 @@
-import * as React from "react";
-import { DataGrid, GridApi } from "@mui/x-data-grid";
-import { textAlign } from "@mui/system";
-import Link from "@mui/material/Link";
-import { styled } from "@mui/material/styles";
-import "../App.css";
-
-import WikiSearch from "../helpers/WikiSearch.js";
-
+import React from "react";
+import { DataGrid } from "@mui/x-data-grid";
 import Button from "@mui/material/Button";
 
-// import {link} from "@mui"
+import postRequest from "../helpers/postRequest.js";
+import "../css/Table.css";
 
-//Page loading with spinner
+// TODO: Page loading with spinner
 // https://mui.com/components/data-grid/selection/#usage-with-server-side-pagination
 
-async function getDetailsFromWikipedia(movieTitle) {
-  const data2 = await fetch("/WikiSearch", {
-    //extract url
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: `{
-      "queryWord": "${movieTitle}"
-    }`,
-  })
-    .then((response) => response.json())
-    .then((response) => openLinkInNewTab(response))
-    .catch((error) => {
-      console.error("Error while asking search results from server:", error);
-    });
+function handleTitleButtonClick(title) {
+  const postRequestParams = {
+    url: "/WikiSearch",
+    searchTitle: title,
+  };
+  postRequest(postRequestParams, openLinkInNewTab);
 }
 
 function openLinkInNewTab(URL) {
-  window.open(URL, "_blank");
+  if (URL.length !== 0) {
+    window.open(URL);
+  } else {
+    window.alert(
+      "Did not find any article about the selected title on Wikipedia! \nPlease try another one."
+    );
+  }
 }
-
-//WikiSearch(title);
-
-// const StyledDataGrid = styled(DataGrid)({
-//   "& .MuiTableRow-hover": {
-//     backgroundColor: "#FFFFFF",
-//   },
-// });
 
 const columns = [
   {
@@ -50,12 +32,16 @@ const columns = [
     headerName: "Title",
     width: 500,
     align: "left",
-
+    headerAlign: "center",
     renderCell: (params) => {
       const onClick = (e) => {
-        return getDetailsFromWikipedia(params.row.name);
+        handleTitleButtonClick(params.row.name);
       };
-      return <Button onClick={onClick}>{params.row.name}</Button>;
+      return (
+        <Button variant="string" onClick={onClick}>
+          {params.row.name}
+        </Button>
+      );
     },
   },
   {
@@ -64,6 +50,7 @@ const columns = [
     sortable: false,
     width: 400,
     align: "left",
+    headerAlign: "center",
     // Genres are stored in additional array. This mapping creates one string from it.
     valueGetter: (params) => {
       let result;
@@ -80,8 +67,9 @@ const columns = [
   {
     field: "score",
     headerName: "Score",
-    width: 90,
+    width: 98,
     align: "center",
+    headerAlign: "center",
   },
 ];
 
@@ -89,27 +77,17 @@ export default function Table(props) {
   // const [pageSize, setRowsPerPage] = React.useState(10);
 
   return (
-    <div
-      style={{
-        height: 1155,
-        width: 1000,
-        backgroundColor: "#950101",
-        margin: "auto",
-      }}
-    >
+    <div className="tableSection">
       <DataGrid
+        hideFooterSelectedRowCount={true}
+        autoHeight={true}
         rows={props.items}
+        density="normal"
         columns={columns}
         pageSize={20}
         rowsPerPageOptions={[20]}
-        // sx={{
-        //   border: 3,
-        //   borderColor: "#3D0000",
-        //   borderRadius: 0,
-        //   // "& .MuiDataGrid-cell:hover": {
-        //   //   backgroundColor: "3D0000",
-        //   // },
-        // }}
+        showCellRightBorder={true}
+        // TODO: paginationMode="server"
       />
     </div>
   );
