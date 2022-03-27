@@ -82,7 +82,6 @@ export default function Table(props) {
         hideFooterSelectedRowCount={true}
         autoHeight={true}
         rows={props.items}
-        density="normal"
         columns={columns}
         pageSize={20}
         rowsPerPageOptions={[20]}

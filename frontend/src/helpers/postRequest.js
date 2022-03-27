@@ -1,4 +1,4 @@
-async function postRequest(params, processResult) {
+async function postRequest(params, processResult, setLoading) {
   await fetch(params.url, {
     method: "POST",
     headers: {
@@ -16,6 +16,7 @@ async function postRequest(params, processResult) {
         error
       );
     });
+  setLoading(false);
 }
 
 export default postRequest;
