@@ -51,7 +51,7 @@ function App() {
         "Content-Type": "application/json",
       },
       body: `{
-        "formData": "${formData}"
+        "queryWord": "${formData}"
       }`,
     })
       .then((response) => response.json())

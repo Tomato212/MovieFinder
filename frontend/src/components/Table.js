@@ -14,7 +14,7 @@ import Button from "@mui/material/Button";
 //Page loading with spinner
 // https://mui.com/components/data-grid/selection/#usage-with-server-side-pagination
 
-async function getDetailsFromWikipedia(formData) {
+async function getDetailsFromWikipedia(movieTitle) {
   const data2 = await fetch("/WikiSearch", {
     //extract url
     method: "POST",
@@ -22,7 +22,7 @@ async function getDetailsFromWikipedia(formData) {
       "Content-Type": "application/json",
     },
     body: `{
-      "formData": "${formData}"
+      "queryWord": "${movieTitle}"
     }`,
   })
     .then((response) => response.json())

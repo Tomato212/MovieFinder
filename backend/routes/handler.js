@@ -1,21 +1,18 @@
 import { Router } from "express";
-const router = Router();
 import {
-  graphQLReqest,
-  processSearchResult,
-  getDetailsFromWikipedia,
-  processWikiSearchResult,
-} from "../graphQL.js";
-import fetch from "node-fetch";
+  processTMDBWResult,
+  fetchFromAPI,
+  createURLFromParams,
+} from "../apiCommunication.js";
+
+const router = Router();
 
 router.post("/SearchMovies", (req, res) => {
-  // separate into other function
-  // Search for similar movies: similar{name}
-
-  const titleQuery = req.body.formData;
-  const endpoint = "https://tmdb.sandbox.zoosh.ie/dev/graphql";
+  // TODO: Search for similar movies: similar{name}
+  const url = "https://tmdb.sandbox.zoosh.ie/dev/graphql";
+  const headers = { "Content-Type": "application/json" };
   const query = `query{
-    searchMovies(query: "${titleQuery}") {
+    searchMovies(query: "${req.body.queryWord}") {
       id
       name
       genres {
@@ -26,27 +23,38 @@ router.post("/SearchMovies", (req, res) => {
   }`;
 
   // GraphQL request towards TMDBW
-  graphQLReqest(endpoint, {
-    query,
-  })
+  fetchFromAPI(url, "POST", headers, { query })
     .then((data) => {
-      res.send(processSearchResult(data));
+      res.send(processTMDBWResult(data));
     })
     .catch((error) =>
-      console.log(
-        "Something went wrong while post request towards TMDBW: " + error
+      console.error(
+        "Something went wrong while getting movies from TMDBW: " + error
       )
     );
 });
 
 router.post("/WikiSearch", (req, res) => {
-  const titleQuery = req.body.formData;
-  getDetailsFromWikipedia(titleQuery)
+  var params = {
+    url: "https://en.wikipedia.org/w/api.php",
+    action: "opensearch",
+    search: req.body.queryWord,
+    limit: "1", // return only the first result
+    namespace: "0",
+    format: "json",
+  };
+
+  const url = createURLFromParams(params);
+  // Defined by Wiki API. See more:
+  //  https://www.mediawiki.org/w/index.php?title=API:Opensearch&action=edit&section=4 at the "Details" section.
+  const titleOfMovie = 3;
+
+  fetchFromAPI(url, "GET")
     .then((data) => {
-      res.send(processWikiSearchResult(data));
+      res.send(data[titleOfMovie]);
     })
     .catch((error) =>
-      console.log(
+      console.error(
         "Something went wrong while get request towards Wikipedia: " + error
       )
     );
