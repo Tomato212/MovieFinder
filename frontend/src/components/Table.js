@@ -38,7 +38,7 @@ const columns = [
         handleTitleButtonClick(params.row.name);
       };
       return (
-        <Button variant="string" onClick={onClick}>
+        <Button variant="string" onClick={onClick} className="titleButton">
           {params.row.name}
         </Button>
       );
