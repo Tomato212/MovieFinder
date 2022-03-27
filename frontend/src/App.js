@@ -5,7 +5,7 @@ import Table from "./components/Table";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
-import { styled } from "@mui/material/styles";
+import { styled, ThemeProvider, createTheme } from "@mui/material/styles";
 import LinearProgress from "@mui/material/LinearProgress";
 
 const SearchTextField = styled(TextField)({
@@ -44,18 +44,21 @@ function App() {
   };
 
   async function formSubmit(formData) {
-    const data2 = await fetch("/movies", {
+    const data2 = await fetch("/SearchMovies", {
       //extract url
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: `{
-        "formData": "${formData}"
+        "queryWord": "${formData}"
       }`,
     })
       .then((response) => response.json())
-      .then((response) => updateMovieList(response));
+      .then((response) => updateMovieList(response))
+      .catch((error) => {
+        console.error("Error while asking search results from server:", error);
+      });
     setLoading(false);
   }
 
@@ -67,6 +70,40 @@ function App() {
     const newValue = event.target.value;
     setSearchFormInput(newValue);
   }
+
+  // For mui table options
+  const options = {
+    filterType: "checkbox",
+    rowsPerPage: [3],
+    rowsPerPageOptions: [1, 3, 5, 6],
+    jumpToPage: true,
+    textLabels: {
+      pagination: {
+        next: "Next >",
+        previous: "< Previous",
+        rowsPerPage: "Total items Per Page",
+        displayRows: "OF",
+      },
+    },
+    onChangePage(currentPage) {
+      console.log({ currentPage });
+    },
+    onChangeRowsPerPage(numberOfRows) {
+      console.log({ numberOfRows });
+    },
+  };
+
+  const tableTheme = createTheme({
+    overrides: {
+      MuiTableRow: {
+        hover: {
+          "&:hover": {
+            backgroundColor: "rgba(33, 150, 243, 0.25) !important",
+          },
+        },
+      },
+    },
+  });
 
   return (
     <div className="container">
@@ -120,6 +157,10 @@ function App() {
                   backgroundColor: "#950101",
                   color: "#000000",
                 },
+                "&:disabled": {
+                  backgroundColor: "#950101",
+                  color: "#000000",
+                },
               }}
             >
               Search
@@ -135,17 +176,23 @@ function App() {
       ) : movies.length === 0 ? (
         <React.Fragment />
       ) : (
-        <Table
-          items={movies}
-          sx={{
-            width: 300,
-            color: "#3D0000",
-            "& .MuiSlider-thumb": {
-              borderRadius: "1px",
+        <ThemeProvider theme={tableTheme}>
+          <Table
+            items={movies}
+            options={options}
+            rowClick={(event, rowData) => {
+              console.log("hahoooo");
+            }}
+            sx={{
+              width: 300,
               color: "#3D0000",
-            },
-          }}
-        />
+              "& .MuiSlider-thumb": {
+                borderRadius: "1px",
+                color: "#3D0000",
+              },
+            }}
+          />
+        </ThemeProvider>
       )}
     </div>
   );

@@ -24,3 +24,16 @@ body {
   font-size: 70px;
   font-weight: normal;
 }
+
+.MuiTableRow-hover {
+  color: "#FFFFFF";
+}
+
+.MuiTableRow-root {
+  color: "#FFFFFF";
+  font-size: 70px;
+}
+
+.MuiDataGrid-cell {
+  color: "#FFFFFF";
+}
