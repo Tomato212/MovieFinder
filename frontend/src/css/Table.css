@@ -1,6 +1,11 @@
-.tableSection {
+.showRelatedColumn.tableSection {
   margin: auto;
-  width: 1000px;
+  width: 1520px !important;
+}
+
+.noRelatedColumn.tableSection {
+  margin: auto;
+  width: 1000px !important;
 }
 
 .MuiDataGrid-root {
@@ -39,6 +44,12 @@
   white-space: normal !important;
   border-color: #3d0000 !important;
   border-right-width: 2px !important;
+  max-height: 300px !important;
+}
+
+.MuiDataGrid-row {
+  height: auto !important;
+  max-height: 300px !important;
 }
 
 .titleButton.MuiButton-root {

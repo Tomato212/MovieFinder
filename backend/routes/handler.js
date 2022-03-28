@@ -11,10 +11,13 @@ router.post("/SearchMovies", (req, res) => {
   // TODO: Search for similar movies: similar{name}
   const url = "https://tmdb.sandbox.zoosh.ie/dev/graphql";
   const headers = { "Content-Type": "application/json" };
+  const relatedMovieSearch = req.body.searchRelatedMovies;
+  console.log(relatedMovieSearch);
   const query = `query{
     searchMovies(query: "${req.body.queryWord}") {
       id
       name
+      similar{name}
       genres {
         name
       }

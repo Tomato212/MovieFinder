@@ -5,7 +5,8 @@ async function postRequest(params, processResult, setLoading) {
       "Content-Type": "application/json",
     },
     body: `{
-        "queryWord": "${params.searchTitle}"
+        "queryWord": "${params.searchTitle}",
+        "searchRelatedMovies": "${params.searchRelatedMovies}"
       }`,
   })
     .then((response) => response.json())
