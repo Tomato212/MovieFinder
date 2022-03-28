@@ -7,6 +7,8 @@ import "./App.css";
 function App() {
   const [movies, setMovies] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [showRelatedMovieSwitchChecked, setShowRelatedMovieSwitch] =
+    useState(false);
 
   // For mui table options
   const options = {
@@ -33,9 +35,19 @@ function App() {
   return (
     <div className="container">
       <h1>Movie Finder</h1>
-      <Form setMovies={setMovies} loading={loading} setLoading={setLoading} />
+      <Form
+        setMovies={setMovies}
+        loading={loading}
+        setLoading={setLoading}
+        relatedSwitch={showRelatedMovieSwitchChecked}
+        setRelatedSwitch={setShowRelatedMovieSwitch}
+      />
       {!loading && movies.length !== 0 && (
-        <Table items={movies} options={options} />
+        <Table
+          items={movies}
+          options={options}
+          relatedSwitch={showRelatedMovieSwitchChecked}
+        />
       )}
     </div>
   );

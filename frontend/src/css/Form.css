@@ -1,3 +1,15 @@
+/* Boxes */
+.mainFormBox {
+  gap: 12px;
+  width: 700px;
+  margin: auto;
+  padding-bottom: 30px;
+}
+
+.loadingBarFormBox {
+  height: 5px;
+}
+
 /* Search button */
 .searchButton.MuiButton-root {
   background-color: #3d0000 !important;
@@ -26,14 +38,22 @@
   height: 100% !important;
 }
 
-/* Boxes */
-.mainFormBox {
-  gap: 12px;
-  width: 700px;
-  margin: auto;
-  padding-bottom: 30px;
+/* Switch */
+.MuiSwitch-switchBase.Mui-checked {
+  color: #ff0000 !important;
 }
 
-.loadingBarFormBox {
-  height: 5px;
+.MuiSwitch-switchBase {
+  color: #ff0000 !important;
+}
+
+.Mui-checked + .MuiSwitch-track {
+  background-color: #950101 !important;
+}
+
+.MuiSwitch-track {
+  background-color: #3d0000 !important;
+}
+.MuiSwitch-edgeStart {
+  color: #ff0000 !important;
 }
