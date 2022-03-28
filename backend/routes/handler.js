@@ -4,8 +4,17 @@ import {
   fetchFromAPI,
   createURLFromParams,
 } from "../apiCommunication.js";
+import { dirname, join } from "path";
+import { fileURLToPath } from "url";
 
 const router = Router();
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
+
+// Get request from Client towards Server
+router.get("/", function (req, res) {
+  res.sendFile(join(__dirname, "../../frontend/build", "index.html"));
+});
 
 router.post("/SearchMovies", (req, res) => {
   const url = "https://tmdb.sandbox.zoosh.ie/dev/graphql";
