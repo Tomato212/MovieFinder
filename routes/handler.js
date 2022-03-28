@@ -13,7 +13,7 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 
 // Get request from Client towards Server
 router.get("/", function (req, res) {
-  res.sendFile(join(__dirname, "../frontend/build", "index.html"));
+  res.sendFile(join(__dirname, "../frontend/production", "index.html"));
 });
 
 router.post("/SearchMovies", (req, res) => {
