@@ -2,12 +2,8 @@ import React from "react";
 import { DataGrid } from "@mui/x-data-grid";
 import Button from "@mui/material/Button";
 import RelatedConditionalTableDiv from "./conditionalTableClass.js";
-
 import postRequest from "../helpers/postRequest.js";
 import "../css/Table.css";
-
-// TODO: Page loading with spinner
-// https://mui.com/components/data-grid/selection/#usage-with-server-side-pagination
 
 function handleTitleButtonClick(title) {
   const postRequestParams = {
@@ -141,8 +137,6 @@ const columnsWithoutRelated = [
 ];
 
 export default function Table(props) {
-  // const [pageSize, setRowsPerPage] = React.useState(10);
-
   return (
     <RelatedConditionalTableDiv
       relatedSwitch={props.relatedSwitch}
