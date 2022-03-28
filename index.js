@@ -13,8 +13,6 @@ app.use(express.static(join(__dirname, "./frontend/build")));
 app.use(express.json());
 app.use("/", routesHandler);
 
-const PORTHeroku = process.env.PORT; //created for heroku routing port
-const PORTLocal = 4000;
-app.listen(PORTHeroku || PORTLocal, () => {
+app.listen(process.env.PORT || 4000, () => {
   console.log(`Server is running.`);
 });
