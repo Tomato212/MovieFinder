@@ -8,7 +8,6 @@ import {
 const router = Router();
 
 router.post("/SearchMovies", (req, res) => {
-  // TODO: Search for similar movies: similar{name}
   const url = "https://tmdb.sandbox.zoosh.ie/dev/graphql";
   const headers = { "Content-Type": "application/json" };
   const relatedMovieSearch = req.body.searchRelatedMovies;
