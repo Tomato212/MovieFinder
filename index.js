@@ -8,7 +8,7 @@ const app = express();
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
 app.use(express.urlencoded({ extended: true }));
-app.use(express.static(join(__dirname, "./frontend/build")));
+app.use(express.static(join(__dirname, "./frontend/production")));
 
 app.use(express.json());
 app.use("/", routesHandler);
